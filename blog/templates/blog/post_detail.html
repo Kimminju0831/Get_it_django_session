@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block main_area %}
+
     <div id="post-area">
         {% if post.category %}
             <span class="badge badge-secondary float-right">{{ post.category }}</span>
@@ -39,6 +40,15 @@
         <!-- Post Content -->  
         <p>{{ post.content }}</p>
 
+        {% if post.tags.exists %}
+            <i class="fas fa-tags"></i>
+            {% for tag in post.tags.all %}
+                <a href="{{ tag.get_absolute_url }}" class="badge badge-light">{{ tag }}</a>
+            {% endfor %}
+            <br/>
+            <br/>
+        {% endif %}
+        
         {% if post.file_upload %}
         <a href="{{ post.file_upload.url }}" class="btn btn-primary" role="button" download>Download
 
